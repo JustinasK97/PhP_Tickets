@@ -14,7 +14,7 @@
         <?php
         $skrydziaiIs = ['Briuselis','Roma','Liuksemburgas','Amsterdamas','Vilnius','Londonas'];
         $skrydziaiI = ['Vilnius','Londonas','Amsterdamas','Briuselis','Liuksemburgas','Roma'];
-        $skrydzioNr = ['123456','956321','758961','425896','326589'];
+        $skrydzioNr = ['A6985','A6321','A5961','B5896','B6589'];
         $bagazas = ['<20kg','>20kg'];
             if(isset($_GET['submit'])){
                 foreach ($_GET as $value){
@@ -22,7 +22,7 @@
                 }
             }
         ?>
-       
+
         <form>
             <h1><?=siteName;?></h1>
 
@@ -68,7 +68,8 @@
 
             <div class="form-group">
                 <label for="formGroupExampleInput2">Kaina:</label>
-                <input type="text" class="form-control" id="price" name="price" placeholder="€">
+                <input type="number" class="price" id="price" name="price" placeholder="€">
+
             </div>
 
             <div class="form-group">
