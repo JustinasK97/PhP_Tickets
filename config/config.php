@@ -1,0 +1,2 @@
+<?php
+const siteName = "Skrydžiai";
