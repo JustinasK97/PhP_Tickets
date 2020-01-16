@@ -21,6 +21,7 @@
                     echo "$value<br>";
                 }
             }
+            echo intval("price");
         ?>
 
         <form>
