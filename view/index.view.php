@@ -10,22 +10,46 @@
     <title><?=siteName;?></title>
 <body>
 
-   <div class="container">
         <?php
         $skrydziaiIs = ['Briuselis','Roma','Liuksemburgas','Amsterdamas','Vilnius','Londonas'];
         $skrydziaiI = ['Vilnius','Londonas','Amsterdamas','Briuselis','Liuksemburgas','Roma'];
         $skrydzioNr = ['A6985','A6321','A5961','B5896','B6589'];
-        $bagazas = ['<20kg','>20kg'];
-            if(isset($_GET['submit'])){
-                foreach ($_GET as $value){
-                    echo "$value<br>";
-                }
-            }
-            echo intval("price");
-        ?>
+        $bagazas = [5, 10, 15, 20, 30, 40];
+        $validationErr=[];
 
-        <form>
-            <h1><?=siteName;?></h1>
+
+
+        $flyNr = $_POST['flynr'];
+        $personalCode = $_POST['personalcode'];
+        $fullName = $_POST['fullname'];
+        $from = $_POST['from'];
+        $to = $_POST['to'];
+        $price = $_POST['price'];
+        $luggade = intval($_POST['luggade']);
+
+        $bagazoKaina = intval($_POST['price']);
+        if ($luggade >= 20) {
+            $bagKaina = 30;
+            $totalPrice = $price + 30;
+        } else {
+            $bagKaina = 0;
+            $totalPrice = $price;
+        }
+        ?>
+       <?php if($validationErr) :?>
+           <div class="errors">
+               <ul>
+                   <?php foreach($validationErr as $error) :?>
+                       <li><?=$error;?></li>
+                   <?php endforeach; ?>
+               </ul>
+           </div>
+
+       <?php endif; ?>
+        <h1><?=siteName;?></h1>
+
+        <div class="container">
+        <form method="POST">
 
             <div class="form-group">
                 <label for="forGroupExampleInput2">Skrydžio Numeris:</label>
@@ -90,6 +114,35 @@
 
         <button type="submit" class="btn btn-primary mb-2" name="submit">Pateikti</button>
         </form>
+        </div>
+       <div class="container ticket">
+           <div class="row Head">
+               <h3>Bilietas</h3>
+           </div>
+           <div class="row ticket">
+               <div class="row ticket mainInfo">
+                   <div class="col-sm-3">Skrydžio Numeris<p><?=$flyNr;?></p></div>
+                   <div class="col-sm-3">Skrydis iš<p><?=$from?></p></div>
+                   <div class="col-sm-3">Skrydis į<p><?=$to?></p></div>
+               </div>
+
+               <div class="row personal">
+                   <div class="row personal mainInfo">
+                       <div class="col-lg-8">Vardas ir Pavardė<p><?=$fullName;?></p></div>
+                       <div class="col-lg-8">Asmens kodas<p><?=$personalCode;?></p></div>
+                   </div>
+               </div>
+
+               <div class="col price">
+                   <div class="row price mainInfo">
+                       <div class="col-sm-3">Bilieto kaina<p><?=$price; ?>€‎</p></div>
+                       <div class="col-sm-3">Bagažas<p><?=$luggade; ?>€‎</p></div>
+                       <div class="col-sm-3">Galutinė kaina<p><?=$totalPrice; ?>€‎</p></div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
